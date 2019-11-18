@@ -105,7 +105,5 @@ import {
                 ...state,
                 error: action.payload
             } 
-            
-
   }
 }

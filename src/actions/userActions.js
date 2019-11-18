@@ -16,6 +16,23 @@ export const FETCH_USERS = "FETCH_USERS"
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS"
 export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL"
 
+////////////////////////////////////////////////////////
+//////////////// LOGIN /////////////////////////////
+////////////////////////////////////////////////////////
+
+// export const Login = () => dispatch => {
+//     axiosWithAuth()
+//     .post('https://droombw.herokuapp.com/api/auth/login')
+//     .then(res => {
+//         localStorage.setItem('token', res.data.payload);
+//         props.history.push('/protected');
+//       })
+//       .catch(err => console.log(err));
+// }
+
+////////////////////////////////////////////////////////
+//////////////// FETCH USER /////////////////////////////
+////////////////////////////////////////////////////////
 
 export const fetchUser = () => dispatch => {
     dispatch({type: FETCH_USER});
@@ -51,7 +68,7 @@ export const editUser = userData => dispatch => {
             type: UPDATE_USER, 
             payload: response.data
         });
-        })
+    })
         .catch(error => {
         console.log(error);
         dispatch({
@@ -104,7 +121,7 @@ export const fetchAllUsers = () => dispatch => {
     .catch(error => {
       console.log(error);
       dispatch({
-      type: UPDATE_USERS_FAIL,
+      type: FETCH_USERS_FAIL,
       payload: error.response
     });
   });
