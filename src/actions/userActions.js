@@ -6,6 +6,9 @@ export const FETCH_USER = "FETCH_USER"
 export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS"
 export const FETCH_USER_FAIL = "FETCH_USER_FAIL"
 
+export const FETCH_REGISTER_USER_SUCCESS = 'FETCH_REGISTER_USER_SUCCESS'
+
+
 export const DELETE_USER = "DELETE_USER"
 export const DELETE_USER_FAIL = "DELETE_USER_FAIL" 
 
@@ -16,17 +19,29 @@ export const FETCH_USERS = "FETCH_USERS"
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS"
 export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL"
 
-////////////////////////////////////////////////////////
-//////////////// LOGIN /////////////////////////////
-////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////  POST LOGIN and REGISTER USER/////////////////////////////
+/////////////////////////////////////////////////////////////////////
 
-// export const Login = () => dispatch => {
-//     axiosWithAuth()
+// export const loginUser = () => dispatch => {
+//     axios
 //     .post('https://droombw.herokuapp.com/api/auth/login')
 //     .then(res => {
 //         localStorage.setItem('token', res.data.payload);
 //         props.history.push('/protected');
 //       })
+//       .catch(err => console.log(err));
+// }
+
+// export const registerUser = () => dispatch => {
+//     axios
+//     .post('https://droombw.herokuapp.com/api/auth/register')
+//     .then(response => {
+//       dispatch({
+//       type: FETCH_REGISTER_USER_SUCCESS,
+//       payload: response.data
+//       });
+//   })
 //       .catch(err => console.log(err));
 // }
 
