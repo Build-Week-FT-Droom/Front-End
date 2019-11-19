@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Form, Field } from "formik";
-import { fetchUser, updateUser, deleteUser } from "../actions/index";
+import { fetchUser, updateUser, deleteUser } from "../actions/userActions";
+import { Button } from "reactstrap";
 
 const UpdateUserProfile = props => {
     // console.log('update user profile props', props);
@@ -16,8 +17,12 @@ const UpdateUserProfile = props => {
     });
 
 
+    const handleSubmit = event => {
+        event.preventDefault();
+        props.updateUser(userInfo);
+        props.history.push(`/users/${props.match.params.id}`);
+      };
 
-    
 const handleChange = event => {
     setUserInfo({
       ...userInfo,
@@ -92,7 +97,7 @@ const handleChange = event => {
             type="text"
             name="occupation"
             placeholder="Your occupation"
-            value={userinfo.occupation}
+            value={userInfo.occupation}
             onChange={handleChange}
             className="registration-field"
           />
@@ -126,7 +131,7 @@ const handleChange = event => {
         </Form>
       </div>
 
-      {members.map(member => (
+      {userInfo.map(member => (
         <ul key={member.id}>
           <li>Name: {member.fname}</li>
           <li>Name: {member.lname}</li>
@@ -142,10 +147,10 @@ const handleChange = event => {
 const mapStateToProps = state => {
     // console.log(state);
     return {
-      user: state.userProfileReducer.user,
-      error: state.userProfileReducer.error,
-      loading: state.userProfileReducer.loading,
-      userDeleted: state.userProfileReducer.userDeleted
+    //   user: state.userProfileReducer.user,
+    //   error: state.userProfileReducer.error,
+    //   loading: state.userProfileReducer.loading,
+    //   userDeleted: state.userProfileReducer.userDeleted
     };
   };
   
