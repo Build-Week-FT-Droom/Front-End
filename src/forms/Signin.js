@@ -5,12 +5,19 @@ import {Formik, Form, Field, withFormik} from "formik";
 function Signin(props) {
 
    const {status} = props;
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
 
-  useEffect( () => {
-    status && setUser({...user, status});
+  useEffect(() => {
 
-  },[status, user]);
+    status && setUser([...user, status
+    ])
+    }, [status]);
+
+let loginMessage = "";
+console.log('user', user);
+if (user.length !== 0) {
+  loginMessage = <p>You are logged in with username: {user[0].email}</p>}
+  
 
 
   
@@ -25,17 +32,17 @@ function Signin(props) {
             name="email"
             
             placeholder="email"
-            class="registration-field"
+            className="registration-field"
             style={{ fontSize: "1rem", textAlign: "center" }}
             
           />
           <Field
-            className="name"
+           
             type="password"
             name="password"
             
             placeholder="password"
-            class="registration-field"
+            className="registration-field"
             style={{ fontSize: "1rem", textAlign: "center" }}
            
           />
@@ -43,29 +50,30 @@ function Signin(props) {
         <button className="sub-button" style={{ marginTop: '20px'}}>Submit</button>
       </Form>
 
+      <div className= "message">
+        {loginMessage}
+      </div>
+        
       
     </div>
   );
 }
 
 const FormikSigninForm = withFormik({
-    mapPropsToValues({
-       email,
-       password
-    }) {
+    mapPropsToValues:(values) => {
         return {
-        email: email || "",
-        password: password || ""
+        email: values.email || "",
+        password: values.password || ""
     }
 
     },
 
-    handleSubmit(values, {setStatus, setReset}) {
+    handleSubmit(values, {setStatus, resetForm}) {
         axios.post('https://reqres.in/api/users', values)
         .then( res => {
             console.log(res.data);
             setStatus(res.data);
-            setReset();
+            resetForm();
         })
         .catch(err => console.log('errors returned', err));
     }
