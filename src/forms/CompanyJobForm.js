@@ -60,7 +60,7 @@ const addCompanyJob = props => {
           />
         
           <button>Add Job</button>
-          <button>Edit Job</button>
+          <button onCLick={}>Edit Job</button>
           <button onClick={handleDeleteJob} >Delete Job</button>
 
         </form>

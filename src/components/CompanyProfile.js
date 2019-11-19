@@ -5,6 +5,7 @@ import CompanyJobForm from '../forms/CompanyJobForm';
 function CompanyProfile() {
     return (
         <div>
+            <h1>COMPANY PROFILE</h1>
             <CompanyForm/>
             <CompanyJobForm/>
 
