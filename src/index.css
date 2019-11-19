@@ -11,3 +11,55 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.registration-container{
+
+  margin: 2rem 3rem;
+
+
+}
+
+.registration-heading{
+  margin: 50px auto;
+  width: 80%;
+  border-bottom: 3px solid gray;
+ 
+
+}
+
+.registration{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  font-size: 1rem;
+  width: 30%;
+}
+
+.name{
+  display: flex;
+  justify-content: center;
+
+}
+.eachname{
+  display: flex;
+  flex-direction: column;
+}
+.registration-field {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.checkbox-container {
+  margin-top: 10px;
+}
+
+.sub-button {
+  width: 30%;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  margin: 0 auto;
+  border-radius: 5px;
+  outline: none;
+  
+}
