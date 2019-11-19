@@ -75,3 +75,10 @@ h1 {
   outline: none;
   box-shadow: 0 5px 10px grey;
 }
+
+.message {
+  margin-top: 40px;
+  text-align: center;
+  font-weight: 700;
+
+}

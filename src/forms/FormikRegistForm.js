@@ -12,7 +12,7 @@ function MyRegistForm(props) {
   useEffect(() => {
     console.log("status", status);
     status && setMembers([...members, status]);
-  }, [status, members]);
+  }, [status]);
   console.log("members", members);
 
   return (
@@ -123,21 +123,24 @@ function MyRegistForm(props) {
                 paddingBottom: "10px"
               }}
             />
+
+          
           </div>
 
           <Button type="submit" color="secondary" className="sub-button">
             Submit!
           </Button>
-          {/* <button type="submit">Submit!</button> */}
+        
         </Form>
       </div>
 
       {members.map(member => (
-        <ul key={member.id}>
+        <ul key={member.id} className ="message">
           <li>Name: {member.fname}</li>
           <li>Name: {member.lname}</li>
           <li>email: {member.email}</li>
           <li>Occupation: {member.occupation}</li>
+          <li>interests: {member.interests}</li>
           <li>Are you an employer?: {member.tos ? "yes" : "no"}</li>
         </ul>
       ))}
@@ -146,7 +149,7 @@ function MyRegistForm(props) {
 }
 
 const FormikRegistForm = withFormik({
-  mapPropsToValues({
+  mapPropsToValues: ({
     fname,
     lname,
     email,
@@ -154,7 +157,7 @@ const FormikRegistForm = withFormik({
     occupation,
     interests,
     employer
-  }) {
+  }) => {
     return {
       fname: fname || "",
       lname: lname || "",
