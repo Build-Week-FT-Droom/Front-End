@@ -97,6 +97,7 @@ export const editUser = userData => dispatch => {
 /////////////// DELETE USER   ///////////////////////////
 ////////////////////////////////////////////////////////
 
+export const deleteUser = userData => dispatch => {
     axiosWithAuth()
         .delete(`/api/auth/user/${userData.id}`, userData)
         .then(response => {
@@ -114,7 +115,7 @@ export const editUser = userData => dispatch => {
         payload: error.response
         });
     });
-
+}
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-//import {f}
+import {deleteJob, editJob} from "../actions/CompanyActions";
 
 
 const addCompanyJob = props => {
@@ -10,13 +10,19 @@ const addCompanyJob = props => {
         description:''
     });
 
-
-
-    const handleSubmit = e => {
-
-    }
+/////????????????????
+    const handleSubmit = event => {
+      event.preventDefault();
+      props.editJob(userInfo);
+      //props.history.push(`/users/${props.match.params.id}`);
+    };
       
+
+
     
+    const handleDeleteJob = () => {
+      props.deletejob(props.match.params.id);
+    };
   
     const handleChange = e => {
         setCredentials({
@@ -24,19 +30,6 @@ const addCompanyJob = props => {
         }); 
         };
      
-   
-
-    // add = e => {
-    //   e.preventDefault();
-    //   axiosWithAuth()
-    //     .post('/api/friends', this.state.credentials)
-    //     .then(res => {
-    //       localStorage.setItem('token', res.data.payload);
-    //       // redirect to the apps main page?
-    //       props.history.push('/protected');
-    //     })
-    //     .catch(err => console.log(err));
-    // };
 
     return (
       
@@ -68,7 +61,7 @@ const addCompanyJob = props => {
         
           <button>Add Job</button>
           <button>Edit Job</button>
-          <button>Delete Job</button>
+          <button onClick={handleDeleteJob} >Delete Job</button>
 
         </form>
 
@@ -78,4 +71,16 @@ const addCompanyJob = props => {
   }
 
 
-export default addCompanyJob;
+
+  const mapStateToProps = state => {
+    // console.log(state);
+    return {
+      
+      userDeleted: state.userProfileReducer.userDeleted
+    };
+  };
+
+  export default connect(
+    mapStateToProps,
+    {deleteJob, editJob}
+  )(addCompanyJob);

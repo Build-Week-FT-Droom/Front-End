@@ -26,20 +26,8 @@ const addCompany = props => {
      
    
 
-    // add = e => {
-    //   e.preventDefault();
-    //   axiosWithAuth()
-    //     .post('/api/friends', this.state.credentials)
-    //     .then(res => {
-    //       localStorage.setItem('token', res.data.payload);
-    //       // redirect to the apps main page?
-    //       props.history.push('/protected');
-    //     })
-    //     .catch(err => console.log(err));
-    // };
-
     return (
-      // COMPANY FORM
+     
       <div>
         <form onSubmit={handleSubmit}>
           <input
