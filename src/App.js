@@ -46,7 +46,7 @@ function App() {
   const search = (newArray) => {
     setSearchResults(newArray);
   };
-  const token = localStorage.getItem("token");
+  //const token = localStorage.getItem("token");
 
   return (
     <div className="App" className="nav-links">
