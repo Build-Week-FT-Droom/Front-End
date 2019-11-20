@@ -49,7 +49,7 @@ export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL"
 //////////////// FETCH USER /////////////////////////////
 ////////////////////////////////////////////////////////
 
-export const fetchUser = () => dispatch => {
+export const fetchUser = id => dispatch => {
     dispatch({type: FETCH_USER});
     axiosWithAuth()
         .get(`/api/auth/user/${id}`)
@@ -74,7 +74,7 @@ export const fetchUser = () => dispatch => {
 //////////////// EDIT USER /////////////////////////////
 ////////////////////////////////////////////////////////
 
-export const editUser = userData => dispatch => {
+export const updateUser = userData => dispatch => {
 
     axiosWithAuth()
         .put(`/api/auth/user/${userData.id}`, userData)
@@ -97,6 +97,7 @@ export const editUser = userData => dispatch => {
 /////////////// DELETE USER   ///////////////////////////
 ////////////////////////////////////////////////////////
 
+export const deleteUser = userData => dispatch => {
     axiosWithAuth()
         .delete(`/api/auth/user/${userData.id}`, userData)
         .then(response => {
@@ -114,7 +115,7 @@ export const editUser = userData => dispatch => {
         payload: error.response
         });
     });
-
+}
 
 
 

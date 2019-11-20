@@ -12,7 +12,8 @@ import JobCard from './components/JobCard';
 import Signin from './forms/Signin';
 import styled from 'styled-components';
 
-
+import PrivateRoute from './utils/PrivateRoute';
+import UpdateUserProfile from './components/UpdateUserProfile';
 
 const WrapNav = styled.div`
 background-color: #333;
@@ -38,9 +39,13 @@ function App() {
       <Route exact path="/" component ={Welcome} />
       <Route path="/signup" component ={FormikRegistForm} />
       <Route path="/signin" component ={Signin} />
-      <Route path="/userproile" component ={Userprofile} />
+      <PrivateRoute path="/userproile" component ={Userprofile} />
       <Route path="/joblist" component = {Joblist} />
+
       <Route path="/jobcard/:id" component = {JobCard} />
+
+      
+
     
     </div>
   );
