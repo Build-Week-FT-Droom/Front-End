@@ -7,8 +7,8 @@ import { Button } from "reactstrap";
 const UpdateUserProfile = props => {
     // console.log('update user profile props', props);
     const [userInfo, setUserInfo] = useState({
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
       occupuation: "",

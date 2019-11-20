@@ -13,7 +13,7 @@ import {
     FETCH_USERS_SUCCESS,
     FETCH_USERS_FAIL
 
-  } from "./actions";
+  } from "../actions/userActions";
   
   const initialState = {
     user: {},
@@ -105,5 +105,9 @@ import {
                 ...state,
                 error: action.payload
             } 
+
+        default:
+            return state;
   }
+
 }

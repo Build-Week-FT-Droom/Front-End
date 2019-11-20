@@ -4,11 +4,11 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 const addCompany = props => {
-    const [credentials,setCredentials] = useState({
-        title: '',
-        salary: '',
-        description:''
-    });
+    // const [credentials,setCredentials] = useState({
+    //     title: '',
+    //     salary: '',
+    //     description:''
+    // });
 
 
 
@@ -19,9 +19,9 @@ const addCompany = props => {
     
   
     const handleChange = e => {
-        setCredentials({
-            [e.target.name]: e.target.value
-        }); 
+        // setCredentials({
+        //     [e.target.name]: e.target.value
+        // }); 
         };
      
    
@@ -34,7 +34,7 @@ const addCompany = props => {
             type="text"
             placeholder="Add Company"
             name="title"
-            value={credentials.title}
+            // value={credentials.title}
             onChange={handleChange}
           />
 
@@ -42,7 +42,7 @@ const addCompany = props => {
             type="text"
             placeholder="Add Yearly Salary"
             name="salary"
-            value={credentials.salary}
+            // value={credentials.salary}
             onChange={handleChange}
           />  
 
@@ -50,7 +50,7 @@ const addCompany = props => {
             type="textarea"
             placeholder="Add description"
             name="description"
-            value={credentials.description}
+            // value={credentials.description}
             onChange={handleChange}
           />
         

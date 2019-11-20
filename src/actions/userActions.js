@@ -23,27 +23,27 @@ export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL"
 ////////////////  POST LOGIN and REGISTER USER/////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-// export const loginUser = () => dispatch => {
-//     axios
-//     .post('https://droombw.herokuapp.com/api/auth/login')
-//     .then(res => {
-//         localStorage.setItem('token', res.data.payload);
-//         props.history.push('/protected');
-//       })
-//       .catch(err => console.log(err));
-// }
+export const loginUser = (login) => dispatch => {
+    axiosWithAuth()
+    .post('https://droombw.herokuapp.com/api/auth/login', login)
+    .then(res => {
+        localStorage.setItem('token', res.data);
+        //props.history.push('/');
+      })
+      .catch(err => console.log(err));
+}
 
-// export const registerUser = () => dispatch => {
-//     axios
-//     .post('https://droombw.herokuapp.com/api/auth/register')
-//     .then(response => {
-//       dispatch({
-//       type: FETCH_REGISTER_USER_SUCCESS,
-//       payload: response.data
-//       });
-//   })
-//       .catch(err => console.log(err));
-// }
+export const registerUser = () => dispatch => {
+    axios
+    .post('https://droombw.herokuapp.com/api/auth/register')
+    .then(response => {
+      dispatch({
+      type: FETCH_REGISTER_USER_SUCCESS,
+      payload: response.data
+      });
+  })
+      .catch(err => console.log(err));
+}
 
 ////////////////////////////////////////////////////////
 //////////////// FETCH USER /////////////////////////////
