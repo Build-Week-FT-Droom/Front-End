@@ -187,7 +187,7 @@ const FormikRegistForm = withFormik({
 
   handleSubmit(values, { setStatus, resetForm }) {
     axios
-      .post("https://reqres.in/api/users", values)
+      .post("https://droombw.herokuapp.com/api/auth/register", values)
       .then(res => {
         console.log("data", res.data);
         setStatus(res.data);

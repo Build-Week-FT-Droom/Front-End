@@ -79,3 +79,6 @@ https://droombw.herokuapp.com/api/auth/register
 
 test
 https://reqres.in/api/users
+
+test with image
+https://rickandmortyapi.com/api/character/
