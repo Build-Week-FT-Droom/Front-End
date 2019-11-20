@@ -12,7 +12,7 @@ const CompanyProfile = props => {
             <h1>COMPANY PROFILE</h1>
             {/* <CompanyForm/>
             <CompanyJobForm/> */}
-
+            <CompanyJobForm />
         </div>  
 
 

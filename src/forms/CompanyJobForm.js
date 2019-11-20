@@ -1,86 +1,25 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
+import Addjobform from './Addjobform';
 import {deleteJob, editJob} from "../actions/CompanyActions";
 import { connect } from "react-redux";
 
-const addCompanyJob = props => {
-    // const [credentials,setCredentials] = useState({
-    //     title: '',
-    //     salary: '',
-    //     description:''
-    // });
+export default function CompanyJobForm () {
 
-/////????????????????
-    const handleSubmit = event => {
-      event.preventDefault();
-      //props.editJob(userInfo);
-      //props.history.push(`/users/${props.match.params.id}`);
-    };
-      
+   
 
 
-    
-    const handleDeleteJob = () => {
-      props.deletejob(props.match.params.id);
-    };
-  
-    const handleChange = e => {
-        // setCredentials({
-        //     [e.target.name]: e.target.value
-        // }); 
-        };
-     
+          
 
-    return (
-      
+
+      return(
       <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Add Company"
-            name="title"
-            // value={credentials.title}
-            onChange={handleChange}
-          />
-
-          <input
-            type="text"
-            placeholder="Add Yearly Salary"
-            name="salary"
-            // value={credentials.salary}
-            onChange={handleChange}
-          />  
-
-          <input
-            type="textarea"
-            placeholder="Add description"
-            name="description"
-            // value={credentials.description}
-            onChange={handleChange}
-          />
-        
-          <button>Add Job</button>
-          <button>Edit Job</button>
-          <button onClick={handleDeleteJob} >Delete Job</button>
-
-        </form>
-
+        <Addjobform />
        
       </div>
-    );
+    )
   }
 
 
 
-  const mapStateToProps = state => {
-    // console.log(state);
-    return {
-      
-      userDeleted: state.userProfileReducer.userDeleted
-    };
-  };
-
-  export default connect(
-    mapStateToProps,
-    {deleteJob, editJob}
-  )(addCompanyJob);
+  
