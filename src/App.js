@@ -8,6 +8,7 @@ import Header from './components/Header';
 import { Form } from 'formik';
 import Userprofile from './components/Userprofile';
 import Joblist from './components/Joblist';
+import JobCard from './components/JobCard';
 import Signin from './forms/Signin';
 import styled from 'styled-components';
 
@@ -44,10 +45,15 @@ function App() {
       <Route path="/signin" component ={Signin} />
       <PrivateRoute path="/userprofile" component ={Userprofile} />
       <Route path="/joblist" component = {Joblist} />
+
+      <Route path="/jobcard/:id" component = {JobCard} />
+
       
+
       <PrivateRoute path="/edit-profile/:id" component={UpdateUserProfile}/>
       {/* <PrivateRoute path="/company-profile" component={CompanyProfile}/> */}
       <Route path="/company-profile" component={CompanyProfile}/>
+
     </div>
   );
 }

@@ -82,3 +82,35 @@ h1 {
   font-weight: 700;
 
 }
+
+.Wrapper {
+
+  display: flex;
+  
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  /* width: 100%; */
+  margin: 0 auto;
+
+  
+  
+  }
+  
+  .searchForm {
+    
+  
+    margin-bottom: 40px;
+    font-size: 230x;
+    padding: 5px 10px;
+    text-align: center;
+    
+  }
+  
+  h2{
+  margin-bottom: 30px;
+  margin-top: 50px;
+  text-align: center;
+  color: #555;
+  
+  }
