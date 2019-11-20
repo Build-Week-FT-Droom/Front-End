@@ -7,7 +7,7 @@ import {registerUser} from '../actions/userActions';
 
 function MyRegistForm(props) {
   // console.log("props", props);
-  const { values, errors, touched, status } = props;
+  const { values, errors, touched, status, history } = props;
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
@@ -198,6 +198,7 @@ const FormikRegistForm = withFormik({
       .post("https://droombw.herokuapp.com/api/auth/register", values)
       .then(res => {
         console.log("data", res);
+        //history.push('/signin')
         setStatus(res.data);
         resetForm();
       })

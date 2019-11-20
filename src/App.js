@@ -46,7 +46,7 @@ function App() {
   const search = (newArray) => {
     setSearchResults(newArray);
   };
-  
+  const token = localStorage.getItem("token");
 
   return (
     <div className="App" className="nav-links">
@@ -61,21 +61,23 @@ function App() {
         
         <Header />
       </WrapNav>
-      
+      {/* {token === null ? (
+    <>   */}
       <Route exact path="/" component ={Welcome} />
       <Route path="/signup" component ={FormikRegistForm} />
       <Route path="/signin" component ={Signin} />
+    {/* </>
+    ) : (
+    <> */}
       <PrivateRoute path="/userprofile" component ={Userprofile} />
-  <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} setSearchResults = {setSearchResults} search= {search}/>} />
+      <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} setSearchResults = {setSearchResults} search= {search}/>} />
       <Route exact path="/jobcard/:id" render = {props => <JobCard {...props} cat="yesMatch" searchResults = {searchResults} search={search}/>} />
-      
-
-      
-
       <PrivateRoute path="/edit-profile/:id" component={UpdateUserProfile}/>
-      {/* <PrivateRoute path="/company-profile" component={CompanyProfile}/> */}
       <Route path="/company-profile" component={CompanyProfile}/>
-
+    
+    {/* </>  
+    )} */}
+       
     </div>
   );
 }

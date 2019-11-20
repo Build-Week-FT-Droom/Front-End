@@ -2,17 +2,23 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
+// export const ALL_JOB
+
 export const UPDATE_JOB = "UPDATE_JOB"
 export const UPDATE_JOB_FAIL = "UPDATE_JOB_FAIL"
+
 export const DELETE_JOB = "DELETE_JOB"
 export const DELETE_JOB_FAIL = "DELETE_JOB_FAIL"
 
 
-// EDIT JOB
+////////////////////////////////////////////////////////////
+/////////////////// DELETE JOB////////////////////////////////
+///////////////////////////////////////////////////////////////
+
 export const editJob = jobData => dispatch => {
 
     axiosWithAuth()
-        //.put(`/api/auth/user/${jobData.id}`, jobData)
+        .put(`/api/jobs/${jobData.id}`, jobData)
         .then(response => {
         dispatch({
             type: UPDATE_JOB, 
@@ -35,7 +41,7 @@ export const editJob = jobData => dispatch => {
 
 export const deleteJob = jobData => dispatch => {
     axiosWithAuth()
-        //.delete(`/api/auth/user/${jobData.id}`, jobData)
+        .delete(`/api/jobs/${jobData.id}`, jobData)
         .then(response => {
             console.log(response)
         dispatch({
