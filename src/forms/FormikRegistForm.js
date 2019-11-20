@@ -139,15 +139,15 @@ function MyRegistForm(props) {
       </div>
 
       {members.map(member => (
-        <ul key={member.id} className ="message">
-          <li>User ID: {member.id}</li>
-          <li>Name: {member.first_name}</li>
-          <li>Name: {member.last_name}</li>
-          <li>email: {member.email}</li>
-          <li>Occupation: {member.occupation}</li>
-          <li>interests: {member.interests}</li>
-          <li>Are you an employer?: {member.tos ? "yes" : "no"}</li>
-        </ul>
+        <div key={member.id} className ="message">
+          <p>User ID: {member.id}</p>
+          <p>Name: {member.first_name}</p>
+          <p>Name: {member.last_name}</p>
+          <p>email: {member.email}</p>
+          <p>Occupation: {member.occupation}</p>
+          <p>interests: {member.interests}</p>
+          <p> you an employer?: {member.tos ? "yes" : "no"}</p>
+        </div>
       ))}
     </div>
   );
@@ -197,8 +197,10 @@ const FormikRegistForm = withFormik({
     axios
       .post("https://droombw.herokuapp.com/api/auth/register", values)
       .then(res => {
-        console.log("data", res);
-        setStatus(res.data);
+        console.log("signup data", res);
+        const resdata = JSON.parse(res.config.data);
+        console.log('stringfy', resdata);
+        setStatus(resdata);
         resetForm();
       })
       .catch(err => console.log(err.response));

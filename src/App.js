@@ -66,7 +66,7 @@ function App() {
       <Route path="/signup" component ={FormikRegistForm} />
       <Route path="/signin" component ={Signin} />
       <PrivateRoute path="/userprofile" component ={Userprofile} />
-  <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} setSearchResults = {setSearchResults} search= {search}/>} />
+     <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} setSearchResults = {setSearchResults} search= {search}/>} />
       <Route exact path="/jobcard/:id" render = {props => <JobCard {...props} cat="yesMatch" searchResults = {searchResults} search={search}/>} />
       
 

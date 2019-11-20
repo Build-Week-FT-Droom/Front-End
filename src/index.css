@@ -54,6 +54,7 @@ h1 {
 .eachname {
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
 }
 .registration-field {
   margin-top: 10px;
@@ -62,6 +63,7 @@ h1 {
   height: 30px;
   box-shadow: 0 5px 10px grey;
   padding: 8px 16px;
+  margin-right: 10px;
 }
 
 .checkbox-container {
