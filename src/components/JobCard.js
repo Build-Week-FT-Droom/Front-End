@@ -8,15 +8,20 @@ import {
 export default function JobCard(props) {
 
 console.log('myprops',props);
- const {job, searchResults, match} = props;
+ const {job, searchResults,cat, match} = props;
     let selectedJob;
 
-    if (match) {
-    selectedJob = searchResults.find( item => {
-        return item.id === Number(match.params.id)
-    })
+    
+    
+    console.log('searchResults', searchResults);
+    console.log('job', job);
+    if (cat === "yesMatch") {
+    selectedJob = searchResults.find( item => 
+        item.id === Number(match.params.id)
+       
+    )
 } else selectedJob = job;
-
+   console.log('matchSelectjob', selectedJob)
 
   return (
 

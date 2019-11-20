@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
 import './App.css';
 import FormikRegistForm from './forms/FormikRegistForm';
 import {Route, Link} from 'react-router-dom';
@@ -26,6 +26,28 @@ padding: 20px;
 `;
 
 function App() {
+
+  const [searchResults, setSearchResults] = useState([]);
+
+ 
+  useEffect(() => {
+    axios.get('https://droombw.herokuapp.com/api/jobs')
+    .then(res => {
+      
+      // setCharacters(res.data.results);
+      setSearchResults(res.data);
+      
+      console.log('resdata',res);
+    })
+    .catch(err => console.log(err));
+  }, []);
+
+ 
+  const search = (newArray) => {
+    setSearchResults(newArray);
+  };
+  
+
   return (
     <div className="App" className="nav-links">
       <WrapNav>
@@ -33,7 +55,7 @@ function App() {
         <Link to="/signup" className="nav-link">Sign Up</Link>
         <Link to="/signin" className="nav-link">Sign In</Link>
         <Link to="/userprofile" className="nav-link">My Profile</Link>
-        <Link to="joblist" className="nav-link">Dream Jobs</Link>
+        <Link to="/joblist" className="nav-link">Dream Jobs</Link>
 
         <Link to="/company-profile" className="nav-link">Career Profile</Link>
         
@@ -44,9 +66,9 @@ function App() {
       <Route path="/signup" component ={FormikRegistForm} />
       <Route path="/signin" component ={Signin} />
       <PrivateRoute path="/userprofile" component ={Userprofile} />
-      <Route path="/joblist" component = {Joblist} />
-
-      <Route path="/jobcard/:id" component = {JobCard} />
+  <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} setSearchResults = {setSearchResults} search= {search}/>} />
+      <Route exact path="/jobcard/:id" render = {props => <JobCard {...props} cat="yesMatch" searchResults = {searchResults} search={search}/>} />
+      
 
       
 

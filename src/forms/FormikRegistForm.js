@@ -82,14 +82,14 @@ function MyRegistForm(props) {
           <Field
             type="text"
             name="occupation"
-            placeholder="Your occpation"
+            placeholder="Your occupation"
             className="registration-field"
           />
           {touched.occupation && errors.occupation && (
             <p className="errors">{errors.occupation}</p>
           )}
-          <Field as="select" name="interests" className="registration-field">
-            <option>Your area of interests</option>
+          <Field as="select" name="interests" className="registration-field options" style={{height: '40px'}}>
+            <option >Your area of interests</option>
             <option value="art">Art</option>
             <option value="education">Education</option>
             <option value="entertainment">Entertainment</option>
@@ -140,6 +140,7 @@ function MyRegistForm(props) {
 
       {members.map(member => (
         <ul key={member.id} className ="message">
+          <li>User ID: {member.id}</li>
           <li>Name: {member.first_name}</li>
           <li>Name: {member.last_name}</li>
           <li>email: {member.email}</li>
@@ -196,7 +197,7 @@ const FormikRegistForm = withFormik({
     axios
       .post("https://droombw.herokuapp.com/api/auth/register", values)
       .then(res => {
-        console.log("data", res.data);
+        console.log("data", res);
         setStatus(res.data);
         resetForm();
       })
