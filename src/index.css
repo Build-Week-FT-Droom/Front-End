@@ -25,6 +25,8 @@ code {
 
 .welcome {
   text-align: center;
+  /* display: flex;
+  flex-direction: column; */
 }
 .registration-container {
   margin: 2rem 3rem;
@@ -81,6 +83,8 @@ h1 {
   box-shadow: 0 5px 10px grey;
 }
 
+
+
 .message {
   margin-top: 40px;
   text-align: center;
@@ -105,8 +109,8 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 30px;
-  margin-top: 50px;
+  margin-bottom: 15px;
+  margin-top: 15px;
   text-align: center;
   color: #555;
 }

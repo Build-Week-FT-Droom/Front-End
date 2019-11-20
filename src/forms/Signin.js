@@ -3,8 +3,10 @@ import axios from "axios";
 import { Formik, Form, Field, withFormik } from "formik";
 import { loginUser } from "../actions/userActions";
 function Signin(props) {
-  const { status } = props;
+  console.log(props)
+  const { status, history  } = props;
   const [user, setUser] = useState([]);
+  console.log(history)
 
   useEffect(() => {
     status && setUser([...user, status]);
@@ -61,13 +63,15 @@ const FormikSigninForm = withFormik({
     };
   },
 
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { setStatus, resetForm, props }) {
     axios
       .post("https://droombw.herokuapp.com/api/auth/login", values)
 
       .then(res => {
         console.log('signin response', res.data);
         localStorage.setItem("token", res.data.token);
+        // console.log(history)
+        props.history.push('/')
         setStatus(res.data);
         resetForm();
       })

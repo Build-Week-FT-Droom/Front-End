@@ -7,7 +7,7 @@ import {registerUser} from '../actions/userActions';
 
 function MyRegistForm(props) {
   // console.log("props", props);
-  const { values, errors, touched, status } = props;
+  const { values, errors, touched, status, history } = props;
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
@@ -104,7 +104,7 @@ function MyRegistForm(props) {
             <option value="travel">Travel</option>
             <option value="others">Others</option>
           </Field>
-          <div className="checkbox-container">
+          {/* <div className="checkbox-container">
             <label
               htmlFor="employer"
               className="registration-field checkbox-container"
@@ -123,10 +123,10 @@ function MyRegistForm(props) {
                 marginBottom: "40px",
                 paddingBottom: "10px"
               }}
-            />
+            /> 
 
           
-          </div>
+          </div> */}
 
           <Button onClick= {e => {
             console.log(members)
@@ -197,10 +197,12 @@ const FormikRegistForm = withFormik({
     axios
       .post("https://droombw.herokuapp.com/api/auth/register", values)
       .then(res => {
+
         console.log("signup data", res);
         const resdata = JSON.parse(res.config.data);
         console.log('stringfy', resdata);
         setStatus(resdata);
+
         resetForm();
       })
       .catch(err => console.log(err.response));
