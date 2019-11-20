@@ -190,17 +190,17 @@ const FormikRegistForm = withFormik({
     occupation: Yup.string().required("please enter your current occupation")
   }),
 
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { setStatus, resetForm, props }) {
     delete values.employer
     delete values.passwordConfirmation
     console.log(values)
     axios
       .post("https://droombw.herokuapp.com/api/auth/register", values)
       .then(res => {
-
         console.log("signup data", res);
         const resdata = JSON.parse(res.config.data);
         console.log('stringfy', resdata);
+        props.history.push('/signin')
         setStatus(resdata);
 
         resetForm();

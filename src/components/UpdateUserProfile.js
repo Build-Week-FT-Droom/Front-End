@@ -147,10 +147,10 @@ const handleChange = event => {
 const mapStateToProps = state => {
     // console.log(state);
     return {
-    //   user: state.user,
-    //   error: state.error,
-    //   loading: state.loading,
-    //   userDeleted: state.userDeleted
+      user: state.user,
+      error: state.error,
+      loading: state.loading,
+      userDeleted: state.userDeleted
     };
   };
   
