@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Formik, Form, Field, withFormik} from "formik";
-
+import {loginUser} from '../actions/userActions';
 function Signin(props) {
 
    const {status} = props;
@@ -47,7 +47,8 @@ if (user.length !== 0) {
            
           />
         </div>
-        <button className="sub-button" style={{ marginTop: '20px'}}>Submit</button>
+        <button //onClick={loginUser} 
+        className="sub-button" style={{ marginTop: '20px'}}>Submit</button>
       </Form>
 
       <div className= "message">
@@ -69,9 +70,13 @@ const FormikSigninForm = withFormik({
     },
 
     handleSubmit(values, {setStatus, resetForm}) {
-        axios.post('https://reqres.in/api/users', values)
+      console.log(values)
+        axios
+        //.post('https://reqres.in/api/users', values)
+        .post('https://droombw.herokuapp.com/api/auth/login', values)
         .then( res => {
             console.log(res.data);
+            localStorage.setItem('token', res.data.token);
             setStatus(res.data);
             resetForm();
         })

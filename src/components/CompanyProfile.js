@@ -1,13 +1,17 @@
 import React from 'react';
+
+import { connect } from "react-redux";
+import { editJob } from "../actions/CompanyActions";
+
 import CompanyForm from '../forms/CompanyForm';
 import CompanyJobForm from '../forms/CompanyJobForm';
 
-function CompanyProfile() {
+const CompanyProfile = props => {
     return (
         <div>
             <h1>COMPANY PROFILE</h1>
-            <CompanyForm/>
-            <CompanyJobForm/>
+            {/* <CompanyForm/>
+            <CompanyJobForm/> */}
 
         </div>  
 
@@ -15,4 +19,16 @@ function CompanyProfile() {
     )
 }
 
-export default CompanyProfile;
+const mapStateToProps = state => {
+    // console.log(state);
+    return {
+    
+    };
+  };
+
+export default connect(
+    mapStateToProps,
+    { editJob }
+  )(CompanyProfile);
+
+//export default CompanyProfile;

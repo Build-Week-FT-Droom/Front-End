@@ -3,17 +3,18 @@ import axios from "axios";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Button } from "reactstrap";
+import {registerUser} from '../actions/userActions';
 
 function MyRegistForm(props) {
-  console.log("props", props);
+  // console.log("props", props);
   const { values, errors, touched, status } = props;
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    console.log("status", status);
+    // console.log("status", status);
     status && setMembers([...members, status]);
   }, [status]);
-  console.log("members", members);
+  // console.log("members", members);
 
   return (
     <div>
@@ -26,23 +27,23 @@ function MyRegistForm(props) {
             <div className="eachname">
               <Field
                 type="text"
-                name="fname"
+                name="first_name"
                 placeholder="First Name"
                 className="registration-field"
               />
-              {touched.fname && errors.fname && (
-                <p className="errors">{errors.fname}</p>
+              {touched.first_name && errors.first_name && (
+                <p className="errors">{errors.first_name}</p>
               )}
             </div>
             <div classNmae="eachname">
               <Field
                 type="text"
-                name="lname"
+                name="last_name"
                 placeholder="Last Name"
                 className="registration-field"
               />
-              {touched.lname && errors.lname && (
-                <p className="errors">{errors.lname}</p>
+              {touched.last_name && errors.last_name && (
+                <p className="errors">{errors.last_name}</p>
               )}
             </div>
           </div>
@@ -127,7 +128,10 @@ function MyRegistForm(props) {
           
           </div>
 
-          <Button type="submit" color="secondary" className="sub-button">
+          <Button onClick= {e => {
+            console.log(members)
+            // registerUser (e, )
+            }}  type="submit" color="secondary" className="sub-button">
             Submit!
           </Button>
         
@@ -136,8 +140,8 @@ function MyRegistForm(props) {
 
       {members.map(member => (
         <ul key={member.id} className ="message">
-          <li>Name: {member.fname}</li>
-          <li>Name: {member.lname}</li>
+          <li>Name: {member.first_name}</li>
+          <li>Name: {member.last_name}</li>
           <li>email: {member.email}</li>
           <li>Occupation: {member.occupation}</li>
           <li>interests: {member.interests}</li>
@@ -150,8 +154,8 @@ function MyRegistForm(props) {
 
 const FormikRegistForm = withFormik({
   mapPropsToValues: ({
-    fname,
-    lname,
+    first_name,
+    last_name,
     email,
     password,
     occupation,
@@ -159,8 +163,8 @@ const FormikRegistForm = withFormik({
     employer
   }) => {
     return {
-      fname: fname || "",
-      lname: lname || "",
+      first_name: first_name || "",
+      last_name: last_name || "",
       email: email || "",
       password: password || "",
       occupation: occupation || "",
@@ -170,8 +174,8 @@ const FormikRegistForm = withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    fname: Yup.string().required("please enter your first name"),
-    lname: Yup.string().required("please enter your last name"),
+    first_name: Yup.string().required("please enter your first name"),
+    last_name: Yup.string().required("please enter your last name"),
 
     email: Yup.string()
       .email()
@@ -186,8 +190,11 @@ const FormikRegistForm = withFormik({
   }),
 
   handleSubmit(values, { setStatus, resetForm }) {
+    delete values.employer
+    delete values.passwordConfirmation
+    console.log(values)
     axios
-      .post("https://reqres.in/api/users", values)
+      .post("https://droombw.herokuapp.com/api/auth/register", values)
       .then(res => {
         console.log("data", res.data);
         setStatus(res.data);
