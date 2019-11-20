@@ -103,7 +103,7 @@ function MyRegistForm(props) {
             <option value="sports">Sports</option>
             <option value="travel">Travel</option>
             <option value="others">Others</option>
-          </Field>
+          {/* </Field>
           <div className="checkbox-container">
             <label
               htmlFor="employer"
@@ -123,7 +123,7 @@ function MyRegistForm(props) {
                 marginBottom: "40px",
                 paddingBottom: "10px"
               }}
-            />
+            /> */}
 
           
           </div>

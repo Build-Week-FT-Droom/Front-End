@@ -147,10 +147,10 @@ const handleChange = event => {
 const mapStateToProps = state => {
     // console.log(state);
     return {
-    //   user: state.userProfileReducer.user,
-    //   error: state.userProfileReducer.error,
-    //   loading: state.userProfileReducer.loading,
-    //   userDeleted: state.userProfileReducer.userDeleted
+    //   user: state.user,
+    //   error: state.error,
+    //   loading: state.loading,
+    //   userDeleted: state.userDeleted
     };
   };
   
