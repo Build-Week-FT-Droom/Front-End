@@ -69,7 +69,7 @@ const FormikSigninForm = withFormik({
     },
 
     handleSubmit(values, {setStatus, resetForm}) {
-        axios.post('https://reqres.in/api/users', values)
+        axios.post('https://droombw.herokuapp.com/api/auth/login', values)
         .then( res => {
             console.log(res.data);
             setStatus(res.data);
