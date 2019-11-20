@@ -23,27 +23,27 @@ export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL"
 ////////////////  POST LOGIN and REGISTER USER/////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-export const loginUser = (login) => dispatch => {
-    axiosWithAuth()
-    .post('https://droombw.herokuapp.com/api/auth/login', login)
-    .then(res => {
-        localStorage.setItem('token', res.data);
-        //props.history.push('/');
-      })
-      .catch(err => console.log(err));
-}
+// export const loginUser = (login) => dispatch => {
+//     axiosWithAuth()
+//     .post('https://droombw.herokuapp.com/api/auth/login', login)
+//     .then(res => {
+//         localStorage.setItem('token', res.data);
+//         //props.history.push('/');
+//       })
+//       .catch(err => console.log(err));
+// }
 
-export const registerUser = () => dispatch => {
-    axios
-    .post('https://droombw.herokuapp.com/api/auth/register')
-    .then(response => {
-      dispatch({
-      type: FETCH_REGISTER_USER_SUCCESS,
-      payload: response.data
-      });
-  })
-      .catch(err => console.log(err));
-}
+// export const registerUser = () => dispatch => {
+//     axios
+//     .post('https://droombw.herokuapp.com/api/auth/register')
+//     .then(response => {
+//       dispatch({
+//       type: FETCH_REGISTER_USER_SUCCESS,
+//       payload: response.data
+//       });
+//   })
+//       .catch(err => console.log(err));
+// }
 
 ////////////////////////////////////////////////////////
 //////////////// FETCH USER /////////////////////////////
@@ -79,6 +79,13 @@ export const updateUser = userData => dispatch => {
     axiosWithAuth()
         .put(`/api/auth/user/${userData.id}`, userData)
         .then(response => {
+            // userData.map () => {
+            //     if (userData.id === userData.id) {
+            //         return res.data
+            //     } else {
+            //         return userData
+            //     }
+            // }
         dispatch({
             type: UPDATE_USER, 
             payload: response.data
@@ -103,6 +110,11 @@ export const deleteUser = userData => dispatch => {
         .then(response => {
             console.log(response)
             localStorage.removeItem('token');
+            // userData.filter(
+            //     () =>
+            // userData.id !== _.id
+            //   )
+              
         dispatch({
             type: DELETE_USER, 
             payload: response.data
