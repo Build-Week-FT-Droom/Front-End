@@ -40,7 +40,7 @@ export default function JobList(props) {
                 searchResults.map( each => 
                 {console.log(each);
                 return(
-                <Link to = {`/jobcard/${each.id}`}>
+                <Link to = {`/jobcard/${each.id}`} style={{maxWidth: '30%'}}>
 
                  <JobCard key={each.id} job = {each} searchResults={searchResults} cat="noMatch" />
                 </Link>)
