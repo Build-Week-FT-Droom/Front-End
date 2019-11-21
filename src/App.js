@@ -75,6 +75,10 @@ function App() {
     </>
     ) : (
     <>
+      <Route exact path="/" component ={Welcome} />
+      <Route path="/signup" component ={FormikRegistForm} />
+      <Route path="/signin" component ={Signin} />
+
       <PrivateRoute path="/userprofile" component ={Userprofile} />
 
       <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} search= {search}/>} />
