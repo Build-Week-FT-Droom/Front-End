@@ -1,160 +1,169 @@
 import React, { useState, useEffect } from "react";
+import { Form, FormGroup, Label, Input, Button, Col, Row } from "reactstrap";
 import { connect } from "react-redux";
-import { Form, Field } from "formik";
+
 import { fetchUser, updateUser, deleteUser } from "../actions/userActions";
-import { Button } from "reactstrap";
 
 const UpdateUserProfile = props => {
-    // console.log('update user profile props', props);
-    const [userInfo, setUserInfo] = useState({
-      first_name: "",
-      last_name: "",
-      email: "",
-      password: "",
-      occupuation: "",
-      //past_experience: "",
-      interests: ""
-    });
+  
+  const [userInfo, setUserInfo] = useState({
+    first_name,
+    last_name,
+    email,
+    password,
+    occupation,
+    interests,
+    employer
+  });
 
+  
+  useEffect(() => {
+    props.fetchUser(props.match.params.id);
+  }, []);
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        props.updateUser(userInfo);
-        props.history.push(`/users/${props.match.params.id}`);
-      };
+//   useEffect(() => {
+//     if (props.user) {
+//       setUserInfo(props.user);
+//     }
+//   }, [props.user]);
 
-const handleChange = event => {
+  useEffect(() => {
+    if (props.userDeleted) {
+      props.history.push("/signup");
+    }
+  }, [props.userDeleted]);
+
+  const handleChange = event => {
     setUserInfo({
       ...userInfo,
       [event.target.name]: event.target.value
     });
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    props.updateUser(userInfo);
+    props.history.push(`//${props.match.params.id}`);
+  };
 
   const handleDelete = () => {
     props.deleteUser(props.match.params.id);
   };
 
   return (
-    <div>
-      <div className="registration-heading">
-        <h1>Edit Profile</h1>
-      </div>
-      <div className="registration-container">
-        <Form onSubmit={handleSubmit} className="registration">
-          <div className="name">
-            <div className="eachname">
-              <Field
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={userInfo.firstName}
-                onChange={handleChange}
-                className="registration-field"
-              />
-              
-            </div>
-            <div className="eachname">
-              <Field
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={userInfo.lastName}
-                onChange={handleChange}
-                className="registration-field"
-              />
+    <>
+     
+      <div className="container">
+        <Form onSubmit={handleSubmit}>
+          <Row form>
+            
+              <FormGroup>
+               
+                <Input
+                //   id="firstName"
+                  type="text"
+                  name="first_name"
+                  placeholder="First Name"
+                  value={userInfo.first_name}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+         
+            
+              <FormGroup>
+                
+                <Input
+                //   id="lastName"
+                  type="text"
+                  name="last_name"
+                  placeholder="Last Name"
+                  value={userInfo.last_name || ""}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+          </Row>
+          <Row form>
+              <FormGroup>
+                
+                <Input
+                //   id="age"
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  value={userInfo.email || ""}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+           
+                <Input
+                  id="gender"
+                  type="text"
+                  name="gender"
+                  placeholder="Gender"
+                  value={userInfo.gender || ""}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+          </Row>
+          <Row form>
+              <FormGroup>
              
-            </div>
-          </div>
-
-          <Field
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={userInfo.email}
-            onChange={handleChange}
-            className="registration-field"
-          />
-        
-          <Field
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={userInfo.password}
-            onChange={handleChange}
-            className="registration-field"
-          />
+                <Input
+                  id="location"
+                  type="text"
+                  name="location"
+                  placeholder="Location"
+                  value={userInfo.location || ""}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                
+                <Input
+                  id="description"
+                  type="text"
+                  name="description"
+                  placeholder="Description"
+                  value={userInfo.description || ""}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+          </Row>
+          <FormGroup>
          
-          {/* <Field
-            type="password"
-            name="passwordConfirmation"
-            placeholder="Password confirmation"
-            value={values.passwordConfimation}
-            className="registration-field"
-          /> */}
-          
-          <Field
-            type="text"
-            name="occupation"
-            placeholder="Your occupation"
-            value={userInfo.occupation}
-            onChange={handleChange}
-            className="registration-field"
-          />
-          
-          <Field as="select" name="interests" className="registration-field">
-            <option>Your area of interests</option>
-            <option value="art">Art</option>
-            <option value="education">Education</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="fashion">Fashion</option>
-            <option value="foods">Foods</option>
-            <option value="game">Games or Racing</option>
-            <option value="language">Language</option>
-            <option value="literature">Literature</option>
-            <option value="Nature">Nature</option>
-            <option value="technology">Technology</option>
-            <option value="sports">Sports</option>
-            <option value="travel">Travel</option>
-            <option value="others">Others</option>
-          </Field>
-          
 
-          <Button type="submit" color="secondary" className="sub-button">
-           Update Profile
+            <Input
+              id="interests"
+              type="textarea"
+              name="interests"
+              placeholder="Interests"
+              value={userInfo.interests || []}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <Button color="success">Update Profile</Button>
+          <Button onClick={handleDelete} color="danger">
+            Delete Profile
           </Button>
-
-          <Button onClick={handleDelete} type="submit" color="secondary" className="sub-button">
-           Delete
-          </Button>
-         
         </Form>
+        
       </div>
-
-      {userInfo.map(member => (
-        <ul key={member.id}>
-          <li>Name: {member.fname}</li>
-          <li>Name: {member.lname}</li>
-          <li>email: {member.email}</li>
-          <li>Occupation: {member.occupation}</li>
-        </ul>
-      ))}
-    </div>
+    </>
   );
-}
-
+};
 
 const mapStateToProps = state => {
-    // console.log(state);
-    return {
-      user: state.user,
-      error: state.error,
-      loading: state.loading,
-      userDeleted: state.userDeleted
-    };
+  // console.log(state);
+  return {
+    user: state.userProfileReducer.user,
+    error: state.userProfileReducer.error,
+    loading: state.userProfileReducer.loading,
+    userDeleted: state.userProfileReducer.userDeleted
   };
-  
-  export default connect(
-    mapStateToProps,
-    { fetchUser, updateUser, deleteUser }
-  )(UpdateUserProfile);
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchUser, updateUser, deleteUser }
+)(UpdateUserProfile);
