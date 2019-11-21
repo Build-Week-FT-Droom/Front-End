@@ -5,7 +5,7 @@ import FormikRegistForm from './forms/FormikRegistForm';
 import {Route, Link} from 'react-router-dom';
 import Welcome from './components/Welcome';
 import Header from './components/Header';
-import { Form } from 'formik';
+// import { Form } from 'formik';
 import Userprofile from './components/Userprofile';
 import Joblist from './components/Joblist';
 import JobCard from './components/JobCard';
@@ -13,7 +13,7 @@ import Signin from './forms/Signin';
 import styled from 'styled-components';
 
 import PrivateRoute from './utils/PrivateRoute';
-import UpdateUserProfile from './components/UpdateUserProfile';
+
 import CompanyProfile from './components/CompanyProfile';
 
 const WrapNav = styled.div`
@@ -76,11 +76,10 @@ function App() {
     <> */}
       <PrivateRoute path="/userprofile" component ={Userprofile} />
 
-     <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} search= {search}/>} />
+      <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} search= {search}/>} />
 
-   
       <Route exact path="/jobcard/:id" render = {props => <JobCard {...props} searchResults = {searchResults} cat="yesMatch"  search={search}/>} />
-      <PrivateRoute path="/edit-profile/:id" component={UpdateUserProfile}/>
+      
       <Route path="/company-profile" component={CompanyProfile}/>
     
     {/* </>  

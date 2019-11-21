@@ -7,13 +7,13 @@ import { fetchUser, updateUser, deleteUser } from "../actions/userActions";
 const UpdateUserProfile = props => {
   
   const [userInfo, setUserInfo] = useState({
-    first_name,
-    last_name,
-    email,
-    password,
-    occupation,
-    interests,
-    employer
+    first_name:"",
+    last_name:"",
+    email:"",
+    password:"",
+    occupation:"",
+    interests:[],
+    employer:""
   });
 
   
@@ -21,11 +21,11 @@ const UpdateUserProfile = props => {
     props.fetchUser(props.match.params.id);
   }, []);
 
-//   useEffect(() => {
-//     if (props.user) {
-//       setUserInfo(props.user);
-//     }
-//   }, [props.user]);
+  useEffect(() => {
+    if (props.user) {
+      setUserInfo(props.user);
+    }
+  }, [props.user]);
 
   useEffect(() => {
     if (props.userDeleted) {
@@ -39,113 +39,118 @@ const UpdateUserProfile = props => {
       [event.target.name]: event.target.value
     });
   };
-
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
   const handleSubmit = event => {
     event.preventDefault();
     props.updateUser(userInfo);
-    props.history.push(`//${props.match.params.id}`);
+    props.history.push(`/userprofile/${props.match.params.id}`);
   };
 
   const handleDelete = () => {
     props.deleteUser(props.match.params.id);
   };
-
+///////////////////////////////////////////////////////////////////////////////  
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
   return (
     <>
      
-      <div className="container">
-        <Form onSubmit={handleSubmit}>
+      <div >
+          <h1>My Profile</h1>
+        <Form onSubmit={handleSubmit} className="registration">
           <Row form>
             
-              <FormGroup>
+            <FormGroup>
                
                 <Input
-                //   id="firstName"
+                  className="registration-field2"
                   type="text"
                   name="first_name"
                   placeholder="First Name"
                   value={userInfo.first_name}
                   onChange={handleChange}
                 />
-              </FormGroup>
+            </FormGroup>
          
-            
-              <FormGroup>
+            <FormGroup>
                 
                 <Input
-                //   id="lastName"
+                  className="registration-field2"
                   type="text"
                   name="last_name"
                   placeholder="Last Name"
                   value={userInfo.last_name || ""}
                   onChange={handleChange}
                 />
-              </FormGroup>
+            </FormGroup>
           </Row>
           <Row form>
-              <FormGroup>
+            <FormGroup>
                 
                 <Input
-                //   id="age"
+                  className="registration-field2"
                   type="text"
                   name="email"
                   placeholder="Email"
                   value={userInfo.email || ""}
                   onChange={handleChange}
                 />
-              </FormGroup>
-              <FormGroup>
+            </FormGroup>
+            <FormGroup>
            
                 <Input
-                  id="gender"
-                  type="text"
-                  name="gender"
-                  placeholder="Gender"
-                  value={userInfo.gender || ""}
-                  onChange={handleChange}
-                />
-              </FormGroup>
+                    className="registration-field2"
+                    type="text"
+                    name="password"
+                    placeholder="Password"
+                    value={userInfo.password || ""}
+                    onChange={handleChange}
+                    />
+                </FormGroup>
           </Row>
           <Row form>
-              <FormGroup>
+                <FormGroup>
              
-                <Input
-                  id="location"
-                  type="text"
-                  name="location"
-                  placeholder="Location"
-                  value={userInfo.location || ""}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-              <FormGroup>
-                
-                <Input
-                  id="description"
-                  type="text"
-                  name="description"
-                  placeholder="Description"
-                  value={userInfo.description || ""}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-          </Row>
-          <FormGroup>
-         
+                    <Input
+                    className="registration-field2"
+                    type="text"
+                    name="occupation"
+                    placeholder="Occupation"
+                    value={userInfo.occupation || ""}
+                    onChange={handleChange}
+                    />
+                </FormGroup>
 
-            <Input
-              id="interests"
-              type="textarea"
-              name="interests"
-              placeholder="Interests"
-              value={userInfo.interests || []}
-              onChange={handleChange}
-            />
+                <Input type="select" name="interests" className="registration-field2b" style={{height: '40px'}}>
+                    <option >Your area of interests</option>
+                    <option value="art">Art</option>
+                    <option value="education">Education</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="foods">Foods</option>
+                    <option value="game">Games or Racing</option>
+                    <option value="language">Language</option>
+                    <option value="literature">Literature</option>
+                    <option value="Nature">Nature</option>
+                    <option value="technology">Technology</option>
+                    <option value="sports">Sports</option>
+                    <option value="travel">Travel</option>
+                    <option value="others">Others</option>
+                </Input>
+   
+          </Row>
+         
+          <FormGroup>
+            <Button className="updateBtn">
+                Update Profile
+            </Button>
+            <Button onClick={handleDelete} className="deleteBtn" >
+                Delete Profile
+            </Button>
           </FormGroup>
-          <Button color="success">Update Profile</Button>
-          <Button onClick={handleDelete} color="danger">
-            Delete Profile
-          </Button>
+
         </Form>
         
       </div>
@@ -156,10 +161,10 @@ const UpdateUserProfile = props => {
 const mapStateToProps = state => {
   // console.log(state);
   return {
-    user: state.userProfileReducer.user,
-    error: state.userProfileReducer.error,
-    loading: state.userProfileReducer.loading,
-    userDeleted: state.userProfileReducer.userDeleted
+    user: state.userReducer.user,
+    error: state.userReducer.error,
+    loading: state.userReducer.loading,
+    userDeleted: state.userReducer.userDeleted
   };
 };
 

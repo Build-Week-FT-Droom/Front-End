@@ -17,7 +17,7 @@ import {
   
   const initialState = {
     user: {},
-    users: [],
+    //users: [],
     loading: false,
     userDeleted: false,
     error: null
