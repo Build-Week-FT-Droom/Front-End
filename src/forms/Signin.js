@@ -14,10 +14,13 @@ function Signin(props) {
 
   let loginMessage = "";
   console.log("user", user);
+
+
+
   if (user.length !== 0) {
     loginMessage = <p>You are logged in with username: {user[0].email}</p>;
-  }
-
+  } else loginMessage = <p>You are not logged in</p>;
+  
   return (
     <div>
       <div className="registration-heading">
