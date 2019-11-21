@@ -3,18 +3,24 @@ import axios from "axios";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Button } from "reactstrap";
-import {registerUser} from '../actions/userActions';
+import { registerUser } from "../actions/userActions";
 
 function MyRegistForm(props) {
   // console.log("props", props);
-  const { values, errors, touched, status} = props;
+  const { values, errors, touched, status } = props;
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    // console.log("status", status);
+    console.log("status", status);
     status && setMembers([...members, status]);
   }, [status]);
   // console.log("members", members);
+
+  let signupMessage = "";
+
+  if (members.length !== 0) {
+    signupMessage = <p> You are signed up as {members[0].email}</p>;
+  } else signupMessage = <p>Please sign up</p>;
 
   return (
     <div>
@@ -88,8 +94,13 @@ function MyRegistForm(props) {
           {touched.occupation && errors.occupation && (
             <p className="errors">{errors.occupation}</p>
           )}
-          <Field as="select" name="interests" className="registration-field options" style={{height: '40px'}}>
-            <option >Your area of interests</option>
+          <Field
+            as="select"
+            name="interests"
+            className="registration-field options"
+            style={{ height: "40px" }}
+          >
+            <option>Your area of interests</option>
             <option value="art">Art</option>
             <option value="education">Education</option>
             <option value="entertainment">Entertainment</option>
@@ -128,25 +139,17 @@ function MyRegistForm(props) {
           
           </div> */}
 
-          <Button color ="primary" style ={{marginTop: '30px'}}
-          type="submit"className="sub-button">
+          <Button
+            color="primary"
+            style={{ marginTop: "30px" }}
+            type="submit"
+            className="sub-button"
+          >
             Submit!
           </Button>
-        
         </Form>
       </div>
-
-      {members.map(member => (
-        <div key={member.id} className ="message">
-          <p>Thanks for your registration at Droom.</p>
-          <p>You are registered with the following information.</p>
-          
-          <p>First Name: {member.first_name}</p>
-          <p>Last Name: {member.last_name}</p>
-          <p>email: {member.email}</p>
-       
-        </div>
-      ))}
+      {<div className="message">{signupMessage}</div>}
     </div>
   );
 }
@@ -157,6 +160,7 @@ const FormikRegistForm = withFormik({
     last_name,
     email,
     password,
+    confirmPassword,
     occupation,
     interests,
     employer
@@ -166,6 +170,7 @@ const FormikRegistForm = withFormik({
       last_name: last_name || "",
       email: email || "",
       password: password || "",
+      confirmPassword: confirmPassword || "",
       occupation: occupation || "",
       interests: interests || "",
       employer: employer || false
@@ -182,9 +187,11 @@ const FormikRegistForm = withFormik({
     password: Yup.string()
       .min(6)
       .required(),
-    passwordConfirmation: Yup.string().required(
-      "Password confirmation is required!"
-    ),
+    passwordConfirmation: Yup.string()
+      .required("Password confirmation is required!")
+      .test("passwords-match", "Passwords must match", function(value) {
+        return this.parent.password === value;
+      }),
     occupation: Yup.string().required("please enter your current occupation")
   }),
 
@@ -203,7 +210,7 @@ const FormikRegistForm = withFormik({
 
         resetForm();
       })
-      .catch(err => console.log(err.response));
+      .catch(err => alert("error was returned", err));
   }
 })(MyRegistForm);
 

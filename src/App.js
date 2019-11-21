@@ -56,7 +56,8 @@ function App() {
   return (
     <div className="App" className="nav-links">
       <WrapNav>
-        <Link to="/" className="nav-link">Home</Link>
+        <a href= "https://unruffled-lewin-f72cd0.netlify.com/index.html" className="nav-link">Home</a>
+        <Link to="/" className="nav-link">Welcome</Link>
         <Link to="/signup" className="nav-link">Sign Up</Link>
         <Link to="/signin" className="nav-link">Sign In</Link>
         <Link to="/userprofile" className="nav-link">My Profile</Link>
