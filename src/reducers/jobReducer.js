@@ -20,7 +20,7 @@ import {
     DELETE_JOB,
     DELETE_JOB_FAIL,
 
-  } from "../actions/jobActions";
+  } from "../actions/CompanyActions";
 
   const initialState = {
     job:'',
