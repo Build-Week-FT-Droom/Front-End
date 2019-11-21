@@ -91,14 +91,16 @@ h1 {
   font-weight: 700;
 }
 
-.Wrapper {
+.wrapper {
   display: flex;
 
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: flex-start;
   /* width: 100%; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  margin-left: 40px;
+
 }
 
 .searchForm {
@@ -110,7 +112,7 @@ h1 {
 
 h2 {
   margin-bottom: 15px;
-  margin-top: 15px;
+  margin-top: 35px;
   text-align: center;
   color: #555;
 }
