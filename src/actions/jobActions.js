@@ -12,10 +12,11 @@ export const JOBS_BY_ID_FAIL = "JOBS_BY_ID_FAIL"
 export const JOBS_BY_USER_ID = "JOBS_BY_USER_ID"
 export const JOBS_BY_USER_ID_FAIL = "JOBS_BY_USER_ID_FAIL"
 
-export const NEW_JOB = "NEW_JOB"
+export const NEW_JOB_SUCCESS = "NEW_JOB_SUCCESS"
 export const NEW_JOB_FAIL = "NEW_JOB_FAIL"
 
 export const UPDATE_JOB = "UPDATE_JOB"
+export const UPDATE_JOB_SUCCESS = "UPDATE_JOB_SUCCESS"
 export const UPDATE_JOB_FAIL = "UPDATE_JOB_FAIL"
 
 export const DELETE_JOB = "DELETE_JOB"
@@ -99,13 +100,13 @@ export const allJobsUserId = jobData => dispatch => {
 /////////////////// EDIT/UPDATE JOB ///////////////////////////////
 ///////////////////////////////////////////////////////////////
 
-export const editJob = jobData => dispatch => {
-
+export const editJob = (job, id) => dispatch => {
+    dispatch({type:UPDATE_JOB});
     axiosWithAuth()
-        .put(`/api/jobs/${jobData.id}`, jobData)
+        .put(`/api/jobs/${id}`, job)
         .then(response => {
         dispatch({
-            type: UPDATE_JOB, 
+            type: UPDATE_JOB_SUCCESS, 
             payload: response.data
         });
     })
@@ -148,9 +149,9 @@ export const editJob = jobData => dispatch => {
 /////////////////// DELETE JOB////////////////////////////////
 ///////////////////////////////////////////////////////////////
 
-export const deleteJob = jobData => dispatch => {
+export const deleteJob = id => dispatch => {
     axiosWithAuth()
-        .delete(`/api/jobs/${jobData.id}`, jobData)
+        .delete(`/api/jobs/${id}`)
         .then(response => {
             console.log(response)
         dispatch({

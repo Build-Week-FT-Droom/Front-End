@@ -10,20 +10,21 @@ import {
     JOBS_BY_USER_ID,
     JOBS_BY_USER_ID_FAIL,
     
-    NEW_JOB,
+    NEW_JOB_SUCCESS,
     NEW_JOB_FAIL,
     
     UPDATE_JOB, 
+    UPDATE_JOB_SUCCESS,
     UPDATE_JOB_FAIL, 
     
     DELETE_JOB,
     DELETE_JOB_FAIL,
 
-  } from "../actions/CompanyActions";
+  } from "../actions/jobActions";
 
   const initialState = {
     job:'',
-    // jobs:'',
+    jobDeleted: false,
     loading: false,
     error: null
   };
@@ -56,7 +57,7 @@ import {
 ////////////////////////////////////////////////////////////////
 //////////////////NEW JOB  //////////////////////////////////
 ////////////////////////////////////////////////////////////////
-        case NEW_JOB: 
+        case NEW_JOB_SUCCESS: 
             return {
                 ...state,
                 job: action.payload,
@@ -70,7 +71,43 @@ import {
             error: action.payload,
             loading: false
         };
+/////////////////////////////////////////
+        case DELETE_JOB: 
+        return {
+            ...state,
+            jobDeleted: action.payload,
+            error: '',
+            loading: false
+        } 
+
+    case DELETE_JOB_FAIL: 
+        return {
+            ...state,
+            error: action.payload,
+            loading: false
+        }  
+
+///////////////UPDATE JOBS////////////////////////////
+
+    case UPDATE_JOB:
+            return {
+                ...state,
+                loading: true, 
+                error: ''
+            }
 
 
+    case UPDATE_JOB_SUCCESS:
+            return {
+                ...state,
+                job: action.payload,
+                loading: false, 
+            }
+
+    case UPDATE_JOB_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
     }
 }
