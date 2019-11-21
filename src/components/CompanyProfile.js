@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from "react-redux";
-import { editJob } from "../actions/CompanyActions";
+import { updateJob } from "../actions/jobActions";
 
 import CompanyForm from '../forms/CompanyForm';
 import CompanyJobForm from '../forms/CompanyJobForm';
@@ -10,8 +10,8 @@ const CompanyProfile = props => {
     return (
         <div>
             <h1>COMPANY PROFILE</h1>
-            {/* <CompanyForm/>
-            <CompanyJobForm/> */}
+            
+            
             <CompanyJobForm />
         </div>  
 
@@ -28,7 +28,7 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { editJob }
+    { updateJob }
   )(CompanyProfile);
 
 //export default CompanyProfile;
