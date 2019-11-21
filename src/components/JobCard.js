@@ -4,18 +4,18 @@ import {
   CardTitle, Button
 } from 'reactstrap';
 
-import { fetchUser, editJob, deleteJob, addJob  } from "../actions/jobActions";
+// import { fetchUser, updateJob, deleteJob, addJob  } from "../actions/jobActions";
 
 export default function JobCard(props) {
 
-  const [jobInfo, setJobInfo] = useState({
-    img_url:"",
-    title: "",
-    salary: "",
-    description: "",
-    // user_id: 
+  // const [jobInfo, setJobInfo] = useState({
+  //   img_url:"",
+  //   title: "",
+  //   salary: "",
+  //   description: "",
+  //   // user_id: 
 
-  });
+  // });
 
 
 console.log('myprops',props);
@@ -40,28 +40,29 @@ console.log('myprops',props);
     
        })
 
-///////
-       const handleEdit  = e => {
-        console.log('EDIT ')
-        // const id = localStorage.getItem("userId");
-        const updatedJob = jobInfo
-          { updatedJob = {
-            img_url: jobInfo.img_url,
-            title: jobInfo.title,
-            salary: jobInfo.salary,
-            description: jobInfo.description 
-        }}
-        props.updateJob(updatedJob, id);
-      }
+///////////////////////////////////////
 
-      const handleDelete = () => {
-        // const id = localStorage.getItem("userId");
-        props.deleteJob(id)
-          .then(() => {
-            //props.history.push('/signin')
-          })
-      };
+      //  const handleEdit  = e => {
+      //   console.log('EDIT ')
+      //   // const id = localStorage.getItem("userId");
+      //   const updatedJob = jobInfo
+      //     { updatedJob = {
+      //       img_url: jobInfo.img_url,
+      //       title: jobInfo.title,
+      //       salary: jobInfo.salary,
+      //       description: jobInfo.description 
+      //   }}
+      //   props.updateJob(updatedJob, id);
+      // }
 
+      // const handleDelete = () => {
+      //   const id = localStorage.getItem("userId");
+      //   props.deleteJob(id)
+      //     .then(() => {
+            
+      //     })
+      // };
+/////////////////////////////////////////////////////////////
 
   return (
 
@@ -80,7 +81,7 @@ console.log('myprops',props);
               {/* <CardText>Job Description: {selectedJob.status}</CardText> */}
               <CardText>Salary: {selectedJob.salary}</CardText>
             </CardBody>
-            <Button color="primary" className="btn-small" onClick ={handleEdit} >Edit</Button>{' '}
+            <Button color="primary" className="btn-small" onClick ={handleClick} >Edit</Button>{' '}
             <Button color="primary" className="btn-small" onClick={handleClick}>Delete</Button>{' '}
       </Card>
 

@@ -5,5 +5,5 @@ import { jobReducer } from "./jobReducer";
 
 export default combineReducers({
   userReducer,
-  jobReducer
+  
 });

@@ -51,7 +51,7 @@ function App() {
   const search = (newArray) => {
     setSearchResults(newArray);
   };
-  //const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   return (
     <div className="App" className="nav-links">
@@ -66,14 +66,14 @@ function App() {
        
         <Header />
       </WrapNav>
-      {/* {token === null ? (
-    <>   */}
+      {token === null ? (
+    <>  
       <Route exact path="/" component ={Welcome} />
       <Route path="/signup" component ={FormikRegistForm} />
       <Route path="/signin" component ={Signin} />
-    {/* </>
+    </>
     ) : (
-    <> */}
+    <>
       <PrivateRoute path="/userprofile" component ={Userprofile} />
 
       <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} search= {search}/>} />
@@ -82,8 +82,8 @@ function App() {
       
       <Route path="/company-profile" component={CompanyProfile}/>
     
-    {/* </>  
-    )} */}
+    </>  
+    )}
        
     </div>
   );

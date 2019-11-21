@@ -100,7 +100,7 @@ export const allJobsUserId = jobData => dispatch => {
 /////////////////// EDIT/UPDATE JOB ///////////////////////////////
 ///////////////////////////////////////////////////////////////
 
-export const editJob = (job, id) => dispatch => {
+export const updateJob = (job, id) => dispatch => {
     dispatch({type:UPDATE_JOB});
     axiosWithAuth()
         .put(`/api/jobs/${id}`, job)
@@ -130,7 +130,7 @@ export const editJob = (job, id) => dispatch => {
             .post(`/api/jobs/`, props)
             .then(response => {
             dispatch({
-                type: NEW_JOB, 
+                type: NEW_JOB_SUCCESS, 
                 payload: response.data
             });
         })

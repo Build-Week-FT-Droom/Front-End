@@ -59,7 +59,7 @@ const handleEdit  = e => {
     const id = localStorage.getItem("userId");
     props.deleteUser(id)
       .then(() => {
-        
+        props.history.push(`/signin/`)
       })
   };
 ///////////////////////////////////////////////////////////////////////////////  
