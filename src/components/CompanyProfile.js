@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from "react-redux";
-import { updateJob } from "../actions/jobActions";
+import { updateJob } from "../actions/CompanyActions";
 
 import CompanyForm from '../forms/CompanyForm';
 import CompanyJobForm from '../forms/CompanyJobForm';

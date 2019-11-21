@@ -4,7 +4,7 @@ import {
   CardTitle, Button, Form, Input, FormGroup
 } from 'reactstrap';
 
- import { fetchUser, updateJob, deleteJob, addJob  } from "../actions/jobActions";
+ import { fetchUser, updateJob, deleteJob, addJob  } from "../actions/CompanyActions";
 
 export default function JobCard(props) {
 
