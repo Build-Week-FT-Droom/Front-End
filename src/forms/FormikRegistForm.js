@@ -7,7 +7,7 @@ import {registerUser} from '../actions/userActions';
 
 function MyRegistForm(props) {
   // console.log("props", props);
-  const { values, errors, touched, status, history } = props;
+  const { values, errors, touched, status} = props;
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
@@ -128,10 +128,8 @@ function MyRegistForm(props) {
           
           </div> */}
 
-          <Button onClick= {e => {
-            console.log(members)
-            // registerUser (e, )
-            }}  type="submit" color="secondary" className="sub-button">
+          <Button color ="primary" style ={{marginTop: '30px'}}
+          type="submit"className="sub-button">
             Submit!
           </Button>
         
@@ -140,13 +138,13 @@ function MyRegistForm(props) {
 
       {members.map(member => (
         <div key={member.id} className ="message">
-          <p>User ID: {member.id}</p>
-          <p>Name: {member.first_name}</p>
-          <p>Name: {member.last_name}</p>
+          <p>Thanks for your registration at Droom.</p>
+          <p>You are registered with the following information.</p>
+          
+          <p>First Name: {member.first_name}</p>
+          <p>Last Name: {member.last_name}</p>
           <p>email: {member.email}</p>
-          <p>Occupation: {member.occupation}</p>
-          <p>interests: {member.interests}</p>
-          <p> you an employer?: {member.tos ? "yes" : "no"}</p>
+       
         </div>
       ))}
     </div>
