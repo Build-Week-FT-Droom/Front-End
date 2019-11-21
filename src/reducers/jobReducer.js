@@ -1,6 +1,8 @@
 import {
-    ALL_JOBS,
-    ALL_JOBS_FAIL,
+
+    FETCH_JOBS,
+    FETCH_JOBS_SUCCESS,
+    FETCH_JOBS_FAIL,
 
     JOBS_BY_ID,
     JOBS_BY_ID_FAIL,
@@ -21,6 +23,7 @@ import {
 
   const initialState = {
     job:'',
+    // jobs:'',
     loading: false,
     error: null
   };
@@ -29,6 +32,30 @@ import {
   export const jobReducer = (state = initialState, action) => {
     switch (action.type) {
 
+        case FETCH_JOBS: 
+        return {
+            ...state,
+            loading: true, 
+            error: ''
+        };
+
+    case FETCH_JOBS_SUCCESS: 
+        return {
+            ...state,
+            job: action.payload,
+            loading: false, 
+            error: ''
+        };
+ 
+    case FETCH_JOBS_FAIL: 
+        return {
+            ...state,
+            error: action.payload
+        };
+
+////////////////////////////////////////////////////////////////
+//////////////////NEW JOB  //////////////////////////////////
+////////////////////////////////////////////////////////////////
         case NEW_JOB: 
             return {
                 ...state,
@@ -43,10 +70,6 @@ import {
             error: action.payload,
             loading: false
         };
-
-
-
-
 
 
     }

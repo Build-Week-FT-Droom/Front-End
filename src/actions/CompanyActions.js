@@ -2,8 +2,9 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-export const ALL_JOBS = "ALL_JOBS"
-export const ALL_JOBS_FAIL = "ALL_JOBS_FAIL"
+export const FETCH_JOBS = "FETCH_JOBS"
+export const FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS"
+export const FETCH_JOBS_FAIL = "FETCH_JOBS_FAIL"
 
 export const JOBS_BY_ID = "JOBS_BY_ID"
 export const JOBS_BY_ID_FAIL = "JOBS_BY_ID_FAIL"
@@ -21,24 +22,25 @@ export const DELETE_JOB = "DELETE_JOB"
 export const DELETE_JOB_FAIL = "DELETE_JOB_FAIL"
 
 
+
 ////////////////////////////////////////////////////////////
-/////////////////// ALL JOB  ////////////////////////////////
+/////////////////// FETCH JOBS  ////////////////////////////////
 ///////////////////////////////////////////////////////////////
 
 export const allJobs = () => dispatch => {
-
+    dispatch({type:FETCH_JOBS});
     axiosWithAuth()
         .get('/api/jobs/')
         .then(response => {
         dispatch({
-            type: ALL_JOBS, 
+            type: FETCH_JOBS_SUCCESS, 
             payload: response.data
         });
     })
         .catch(error => {
         console.log(error);
         dispatch({
-        type: ALL_JOBS_FAIL,
+        type: FETCH_JOBS_FAIL,
         payload: error.response
         });
     });
@@ -121,10 +123,10 @@ export const editJob = jobData => dispatch => {
 /////////////////// NEW   JOB////////////////////////////////
 ///////////////////////////////////////////////////////////////
 
-    export const addJob = () => dispatch => {
+    export const addJob = (props) => dispatch => {
 
         axiosWithAuth()
-            .post(`/api/jobs/`)
+            .post(`/api/jobs/`, props)
             .then(response => {
             dispatch({
                 type: NEW_JOB, 

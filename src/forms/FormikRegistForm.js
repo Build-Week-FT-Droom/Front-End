@@ -198,7 +198,7 @@ const FormikRegistForm = withFormik({
         console.log("signup data", res);
         const resdata = JSON.parse(res.config.data);
         console.log('stringfy', resdata);
-        props.history.push('/signin')
+        props.history.push('/signin') //<----throws formik ERROR, but works with '/'
         setStatus(resdata);
 
         resetForm();

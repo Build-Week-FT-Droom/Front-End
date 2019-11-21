@@ -73,7 +73,7 @@ const FormikSigninForm = withFormik({
       .then(res => {
         console.log('signin response', res.data);
         localStorage.setItem("token", res.data.token);
-        // console.log(history)
+        localStorage.setItem("userId", res.data.userId);
         props.history.push(`/userprofile/`)
         setStatus(res.data);
         resetForm();

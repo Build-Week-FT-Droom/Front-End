@@ -13,25 +13,24 @@ const UpdateUserProfile = props => {
     password:"",
     occupation:"",
     interests:[],
-    employer:""
+    // employer:""
   });
-
+///////////////////////////////////////////////////////////////////////////////
+////FETCH USER? gets id of user to edit their profile?/////////////////////////
+///////////////////////////////////////////////////////////////////////////////
   
   useEffect(() => {
-    props.fetchUser(props.match.params.id);
-  }, []);
-
-  useEffect(() => {
-    if (props.user) {
-      setUserInfo(props.user);
-    }
+    if(userInfo.email === ''){
+      const id = localStorage.getItem("userId");
+      props.fetchUser(id);
+    } setUserInfo({...props.user, password:''})
+    
   }, [props.user]);
+///////////////////////////////////////////////////////////////////////////////
+////// OR this?  sets users info -  edit their profile? ///////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-  useEffect(() => {
-    if (props.userDeleted) {
-      props.history.push("/signup");
-    }
-  }, [props.userDeleted]);
+  
 
   const handleChange = event => {
     setUserInfo({
@@ -42,14 +41,33 @@ const UpdateUserProfile = props => {
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-  const handleSubmit = event => {
-    event.preventDefault();
-    props.updateUser(userInfo);
-    props.history.push(`/userprofile/${props.match.params.id}`);
-  };
+
+const handleEdit  = e => {
+  console.log('EDIT EDIT EDIT')
+  const id = localStorage.getItem("userId");
+    let updatedUser;
+  if(userInfo.password.length){
+    updatedUser = userInfo
+  }else {
+    updatedUser = {
+    first_name:userInfo.first_name,
+    last_name:userInfo.last_name,
+    email:userInfo.email,
+    occupation:userInfo.occupation,
+    interests:userInfo.interests,
+    
+  }}
+  props.updateUser(updatedUser, id);
+}
+
+ 
 
   const handleDelete = () => {
-    props.deleteUser(props.match.params.id);
+    const id = localStorage.getItem("userId");
+    props.deleteUser(id)
+      .then(() => {
+        props.history.push('/signin')
+      })
   };
 ///////////////////////////////////////////////////////////////////////////////  
 ///////////////////////////////////////////////////////////////////////////////
@@ -57,12 +75,11 @@ const UpdateUserProfile = props => {
   return (
     <>
      
-      <div >
+      <div>
           <h1>My Profile</h1>
-        <Form onSubmit={handleSubmit} className="registration">
-          <Row form>
+        <Form onSubmit={handleEdit} >   {/* Handle Submit = EDIT PROFILE, line 49 */}
             
-            <FormGroup>
+            <FormGroup className="registration2">
                
                 <Input
                   className="registration-field2"
@@ -71,10 +88,7 @@ const UpdateUserProfile = props => {
                   placeholder="First Name"
                   value={userInfo.first_name}
                   onChange={handleChange}
-                />
-            </FormGroup>
-         
-            <FormGroup>
+                />       
                 
                 <Input
                   className="registration-field2"
@@ -83,11 +97,7 @@ const UpdateUserProfile = props => {
                   placeholder="Last Name"
                   value={userInfo.last_name || ""}
                   onChange={handleChange}
-                />
-            </FormGroup>
-          </Row>
-          <Row form>
-            <FormGroup>
+                />     
                 
                 <Input
                   className="registration-field2"
@@ -97,9 +107,7 @@ const UpdateUserProfile = props => {
                   value={userInfo.email || ""}
                   onChange={handleChange}
                 />
-            </FormGroup>
-            <FormGroup>
-           
+         
                 <Input
                     className="registration-field2"
                     type="text"
@@ -108,11 +116,7 @@ const UpdateUserProfile = props => {
                     value={userInfo.password || ""}
                     onChange={handleChange}
                     />
-                </FormGroup>
-          </Row>
-          <Row form>
-                <FormGroup>
-             
+              
                     <Input
                     className="registration-field2"
                     type="text"
@@ -121,10 +125,9 @@ const UpdateUserProfile = props => {
                     value={userInfo.occupation || ""}
                     onChange={handleChange}
                     />
-                </FormGroup>
-
-                <Input type="select" name="interests" className="registration-field2b" style={{height: '40px'}}>
-                    <option >Your area of interests</option>
+                   
+                <Input type="select" name="interests" className="registration-field2b" >
+                    <option >Your Interests</option>
                     <option value="art">Art</option>
                     <option value="education">Education</option>
                     <option value="entertainment">Entertainment</option>
@@ -139,16 +142,17 @@ const UpdateUserProfile = props => {
                     <option value="travel">Travel</option>
                     <option value="others">Others</option>
                 </Input>
-   
-          </Row>
+              
+            <div className="BtnsContainer">
          
-          <FormGroup>
-            <Button className="updateBtn">
-                Update Profile
+            <Button type='submit' className="updateBtn">
+                Edit Profile
             </Button>
             <Button onClick={handleDelete} className="deleteBtn" >
                 Delete Profile
             </Button>
+            </div>
+
           </FormGroup>
 
         </Form>
