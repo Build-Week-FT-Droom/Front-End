@@ -1,7 +1,7 @@
-import React from "react";
+import React,{useState} from "react";
 
 import JobCard from "./JobCard";
-import {Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import SearchForm from "../forms/SearchForm";
 
 
@@ -11,12 +11,14 @@ import SearchForm from "../forms/SearchForm";
 
 export default function JobList(props) {
   
-  const {searchResults, setSearchResults, search} = props;
+  const {searchResults,search} = props;
+  
+  
 
 // TODO: Add API Request here - must run in `useEffect`
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
     
-
+   
    
   
 

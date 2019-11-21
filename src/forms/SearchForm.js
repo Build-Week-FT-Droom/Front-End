@@ -16,15 +16,15 @@ const handleChange = event => {
 
 const submitHandler = event => {
 
-event.preventDefault();
+    event.preventDefault();
 
-const results = props.jobs.filter( each => {
-  return each.title.toLowerCase().includes(searchTerm.toLowerCase());
- 
-})
+    const results = props.jobs.filter( each => {
+      return each.title.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    })
 
-props.search(results);
- setSearchTerm("");
+    props.search(results);
+    setSearchTerm("");
 }
 
  

@@ -114,3 +114,19 @@ h2 {
   text-align: center;
   color: #555;
 }
+.btn-small{
+  font-size: 1rem;
+  color: white;
+  padding: 8px 15px;
+  background-color: #044639;
+  border-radius: 5px;
+  margin-right: 0.8rem;
+
+
+}
+
+.btn-small:hover{
+
+  background-color: #0ae4b8;
+  color: black;
+}

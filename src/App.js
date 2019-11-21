@@ -28,8 +28,8 @@ padding: 20px;
 function App() {
 
   const [searchResults, setSearchResults] = useState([]);
-
- 
+  const [change, setChange] = useState("off")
+  
   useEffect(() => {
     axios.get('https://droombw.herokuapp.com/api/jobs')
     .then(res => {
@@ -40,9 +40,14 @@ function App() {
       console.log('resdata',res);
     })
     .catch(err => console.log(err));
-  }, []);
+  }, [change]);
 
- 
+  // toggling for Search, when 'Dream Jobs' is clicked, it will show all items again after search viewed.
+  const Mychange= () => {
+   
+    change === "off" ? setChange("on") : setChange("off")
+  }
+
   const search = (newArray) => {
     setSearchResults(newArray);
   };
@@ -55,10 +60,10 @@ function App() {
         <Link to="/signup" className="nav-link">Sign Up</Link>
         <Link to="/signin" className="nav-link">Sign In</Link>
         <Link to="/userprofile" className="nav-link">My Profile</Link>
-        <Link to="/joblist" className="nav-link">Dream Jobs</Link>
+        <Link to="/joblist" className="nav-link" onClick={Mychange} >Dream Jobs</Link>
 
         <Link to="/company-profile" className="nav-link">Career Profile</Link>
-        
+       
         <Header />
       </WrapNav>
       {/* {token === null ? (
@@ -71,10 +76,10 @@ function App() {
     <> */}
       <PrivateRoute path="/userprofile" component ={Userprofile} />
 
-     <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} setSearchResults = {setSearchResults} search= {search}/>} />
+     <Route path="/joblist" render = {props => <Joblist searchResults = {searchResults} search= {search}/>} />
 
    
-      <Route exact path="/jobcard/:id" render = {props => <JobCard {...props} cat="yesMatch" searchResults = {searchResults} search={search}/>} />
+      <Route exact path="/jobcard/:id" render = {props => <JobCard {...props} searchResults = {searchResults} cat="yesMatch"  search={search}/>} />
       <PrivateRoute path="/edit-profile/:id" component={UpdateUserProfile}/>
       <Route path="/company-profile" component={CompanyProfile}/>
     

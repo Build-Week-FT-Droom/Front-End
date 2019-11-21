@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle
+  CardTitle, Button
 } from 'reactstrap';
 
 
@@ -23,6 +23,12 @@ console.log('myprops',props);
 } else selectedJob = job;
    console.log('matchSelectjob', selectedJob)
 
+
+   const handleClick= ( e => {
+     e.stopPropagation();
+    
+       })
+
   return (
 
 
@@ -40,6 +46,8 @@ console.log('myprops',props);
               {/* <CardText>Job Description: {selectedJob.status}</CardText> */}
               <CardText>Salary: {selectedJob.salary}</CardText>
             </CardBody>
+            <Button color="primary" className="btn-small" onClick ={handleClick} >Edit</Button>{' '}
+            <Button color="primary" className="btn-small" onClick={handleClick}>Delete</Button>{' '}
       </Card>
 
       

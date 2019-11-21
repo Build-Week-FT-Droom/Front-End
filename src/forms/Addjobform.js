@@ -47,6 +47,16 @@ function Addjobform(props) {
                 <p className="errors">{errors.title}</p>
               )}
        
+           <Field
+            type="text"
+            name="salary"
+            placeholder="Salary"
+            
+            className="registration-field"
+          />
+          {touched.salary && errors.salary && (
+            <p className="errors">{errors.salary}</p>
+          )}
           
           <Field
             as="textarea"
@@ -58,18 +68,18 @@ function Addjobform(props) {
           {touched.description && errors.description && (
             <p className="errors">{errors.description}</p>
           )}
-
-          <Field
+            <label htmlFor="user_id" style ={{ fontSize: '1.5rem', marginTop: '18px'}}>Posting ID: </label>
+            <Field
+            id = "user_id"
             type="text"
-            name="salary"
-            placeholder="Salary"
+            name="user_id"
+            placeholder="User ID"
             
             className="registration-field"
           />
-          {touched.salary && errors.salary && (
-            <p className="errors">{errors.salary}</p>
+          {touched.user_id && errors.user_id && (
+            <p className="errors">{errors.user_id}</p>
           )}
-          
 
           <Button type="submit" className="sub-button" style={{marginTop: "30px"}}>
             Submit!
@@ -83,8 +93,9 @@ function Addjobform(props) {
             <p>- You posted a job as below -</p>
           <p>image: {member.img_url}</p>
           <p>Job title: {member.title}</p>
-          <p>Job description: {member.description}</p>
           <p>Salary: {member.salary}</p>
+          <p>Job description: {member.description}</p>
+          
           
         </div>
       ))}
@@ -96,16 +107,16 @@ const FormikAddjobForm = withFormik({
   mapPropsToValues: ({
     img_url,
     title,
+    salary,
     description,
-    salary
-    
+    user_id
   }) => {
     return {
       img_url: img_url || "",
       title: title || "",
+      salary: salary|| "",
       description: description || "",
-      salary: salary|| ""
-      
+      user_id: Date.now()
   }},
 
   validationSchema: Yup.object().shape({
