@@ -78,7 +78,7 @@ function MyRegistForm(props) {
             type="password"
             name="passwordConfirmation"
             placeholder="Password confirmation"
-            value={values.passwordConfimation}
+            value={values.passwordConfirmation}
             className="registration-field"
           />
           {touched.passwordConfirmation && errors.passwordConfirmation && (
@@ -160,7 +160,7 @@ const FormikRegistForm = withFormik({
     last_name,
     email,
     password,
-    confirmPassword,
+    passwordConfirmation,
     occupation,
     interests,
     employer
@@ -170,7 +170,7 @@ const FormikRegistForm = withFormik({
       last_name: last_name || "",
       email: email || "",
       password: password || "",
-      confirmPassword: confirmPassword || "",
+      passwordConfirmation: passwordConfirmation || "",
       occupation: occupation || "",
       interests: interests || "",
       employer: employer || false
