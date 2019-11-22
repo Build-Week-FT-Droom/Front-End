@@ -1,23 +1,69 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
-.App-logo {
-  height: 40vmin;
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.registration2 {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: center; 
+  margin: 0 auto;
+  /* font-size: 1rem; */
+  width: 30%; 
 }
 
-.App-link {
-  color: #09d3ac;
+
+
+.registration-field2 {
+ 
+  margin-top: 5px;
+  font-size: 1.5rem;
+  text-align: center;
+  height: 20px;
+  box-shadow: 0 5px 10px grey;
+  padding: 8px 16px;
 }
+
+.registration-field2b{
+  margin-top: 5px;
+  font-size: 1.25rem;
+  text-align: center;
+  height: 20px;
+  box-shadow: 0 5px 10px grey;
+  height: 40px;
+}
+
+.BtnsContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.updateBtn{
+  width: 125px;
+  font-size: .8rem;
+  font-weight: bold;
+  color: white;
+  padding: 10px 8px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px grey;
+  border: 2px solid black;
+  background: green;
+}
+
+.deleteBtn{
+  width: 125px;
+  font-size: .8rem;
+  font-weight: bold;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px grey;
+  border: 2px solid black;
+  background: red;
+}
+
+
 

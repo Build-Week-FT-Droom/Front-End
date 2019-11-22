@@ -3,7 +3,7 @@ import {
     FETCH_USER_SUCCESS,
     FETCH_USER_FAIL,
 
-    UPDATE_USER,
+    UPDATE_USER_SUCCESS,
     UPDATE_USER_FAIL,
 
     DELETE_USER,
@@ -17,7 +17,7 @@ import {
   
   const initialState = {
     user: {},
-    users: [],
+    //users: [],
     loading: false,
     userDeleted: false,
     error: null
@@ -47,8 +47,9 @@ import {
                 ...state,
                 error: action.payload
             };
+/////////////////////////////////////////////
 
-        case UPDATE_USER:
+        case UPDATE_USER_SUCCESS:
             return {
                 ...state,
                 user: action.payload,
